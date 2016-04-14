@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='angularJS'>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body ng-controller="StoreController as store">
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="js/appLesson2.js"></script>
+	<div ng-repeat="product in store.products">
+		<ul class="list-group">
+			<li class="list-group-item">
+				<div ng-show="product.images.length">
+					<img height="42" width="42" ng-src="{{product.images[0].full}}">
+				</div>
+				<h3>
+					{{product.name}}
+					<em class="pull-right">{{product.price | currency}}</em>
+				</h3>
+			</li>
+		</ul>
+		<section ng-controller="PanelController as panel">
+			<ul class="nav nav-pills">
+				<li ng-class="{ active:panel.isSelected(1) }"> 
+					<a href ng-click="panel.selectTab(1)">Description</a> </li>
+				<li ng-class="{ active:panel.isSelected(2)}">
+					<a href ng-click="panel.selectTab(2)">Specifications</a> </li>
+				<li ng-class="{ active:panel.isSelected(3)}">
+					<a href ng-click="panel.selectTab(3)">Reviews</a> </li>
+			</ul>	
+			<div class="panel" ng-show="panel.isSelected(1)">
+				<h4>Description</h4>
+				<p>{{product.description}}</p>
+			</div>
+			<div class="panel" ng-show="panel.isSelected(2)">
+				<h4>Specifications</h4>
+				<blockquote>None yet</blockquote>
+			</div>
+			<div class="panel" ng-show="panel.isSelected(3)">
+				<h4>Reviews</h4>
+				<blockquote>Not yet</blockquote>
+			</div>
+		</section>
+	</div>
+</body>
+</html>
